@@ -1,11 +1,11 @@
+include Makefile.helpers
 modname = SkillRelearner
-gamepath = /mnt/c/Program\ Files\ \(x86\)/Steam/steamapps/common/Outward/Outward_Defed
-pluginpath = BepInEx/plugins
+dependencies =
 
 assemble:
+	# common for all mods
 	rm -f -r public
-	mkdir -p public/$(pluginpath)/$(modname)
-	cp -u bin/$(modname).dll public/$(pluginpath)/$(modname)/
+	@make dllsinto TARGET=$(modname) --no-print-directory
 
 publish:
 	make assemble
@@ -16,9 +16,3 @@ install:
 	make assemble
 	rm -r -f $(gamepath)/$(pluginpath)/$(modname)
 	cp -u -r public/* $(gamepath)
-clean:
-	rm -f -r public
-	rm -f $(modname).rar
-	rm -f -r bin
-info:
-	echo Modname: $(modname)
