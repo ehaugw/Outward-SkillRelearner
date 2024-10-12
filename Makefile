@@ -7,12 +7,7 @@ assemble:
 	rm -f -r public
 	@make dllsinto TARGET=$(modname) --no-print-directory
 
-publish:
-	make assemble
-	rm -f $(modname).rar
-	rar a $(modname).rar -ep1 public/*
-
-install:
+forceinstall:
 	make assemble
 	rm -r -f $(gamepath)/$(pluginpath)/$(modname)
 	cp -u -r public/* $(gamepath)
